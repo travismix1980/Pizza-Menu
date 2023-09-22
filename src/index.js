@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const pizzaData = [
+/*const pizzaData = [
   {
     name: "Focaccia",
     ingredients: "Bread with italian olive oil and rosemary",
@@ -44,28 +44,55 @@ const pizzaData = [
     photoName: "pizzas/prosciutto.jpg",
     soldOut: false,
   },
-];
+];*/
 
 
 function App() {
   return (
     <div>
-      <h1>Hello React</h1>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <Header />
+      <Menu />
+      <Footer />
     </div>
   );
 }
 
+function Header() {
+  return <h1>Fast React Pizza Co.</h1>
+}
+
+function Menu() {
+  return (
+    <>
+      <h2>Our Menu</h2>
+      <Pizza />
+      <Pizza />
+      <Pizza />
+      <Pizza />
+    </>
+  );
+
+}
+
+function Footer() {
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
+  console.log(isOpen);
+
+
+  return <footer>{new Date().toLocaleTimeString()} We're currently open</footer>
+}
+
 function Pizza() {
   return (
-    <div>
+    <>
       <img src='/pizzas/spinaci.jpg' alt="Pizza Spinaci" />
       <h2>Pizza Spinaci</h2>
       <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-    </div>
-  )
+    </>
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
