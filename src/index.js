@@ -51,7 +51,7 @@ function App() {
   return (
     <div className="container">
       <Header />
-      <Menu />
+      <Menu pizzaData={pizzaData} />
       <Footer />
     </div>
   );
@@ -65,34 +65,32 @@ function Header() {
   );
 }
 
-function Menu() {
+function Menu({ pizzaData }) {
+  const pizzas = pizzaData;
+  const numPizzas = pizzas.length;
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza
-        name="Pizza Spinaci"
-        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
-        photoName="pizzas/spinaci.jpg"
-        price={10}
-      />
-      <Pizza
-        name="Pizza Funghi"
-        ingredients="Tomato, mushrooms"
-        price={12}
-        photoName="pizzas/funghi.jpg"
-      />
+      {numPizzas > 0 ? (
+        <ul className="pizzas">
+          {pizzas.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      ) : <p>We're still working on our menu. Please come back later</p>}
     </main>
   );
 }
 
-function Pizza({ name, ingredients, photoName, price }) {
+function Pizza({ pizzaObj }) {
+  if(pizzaObj.soldOut) return null;
   return (
     <div className="pizza">
-      <img src={photoName} alt={name} />
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div>
-        <h3>{name}</h3>
-        <p>{ingredients}</p>
-        <span>{price + 3}</span>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+        <span>{pizzaObj.price + 3}</span>
       </div>
     </div>
   );
@@ -103,10 +101,16 @@ function Footer() {
   const openHour = 12;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
-  console.log(isOpen);
 
   return (
-    <footer>{new Date().toLocaleTimeString()} We're currently open</footer>
+    <footer className="footer">
+      {isOpen ? (
+        <div className="order">
+          <p>We're open until {closeHour}:00. Come visit us or order online.</p>
+          <button className="btn">Order</button>
+        </div>
+      ) : <p>We're closed till {openHour}:00 thank you for checking us out!</p>}
+    </footer>
   );
 }
 
