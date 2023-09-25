@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import Header from "./Header.js";
-import Menu from "./Menu.js";
-import Footer from "./Footer.js";
+import Header from "./components/Header.js";
+import Menu from "./components/Menu.js";
+import Footer from "./components/Footer.js";
 
 const pizzaData = [
   {

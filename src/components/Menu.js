@@ -1,5 +1,5 @@
 import Pizza from "./Pizza.js";
-import "./index.css";
+import "../index.css";
 
 function Menu({ pizzaData }) {
   const pizzas = pizzaData;
@@ -13,7 +13,9 @@ function Menu({ pizzaData }) {
             <Pizza pizzaObj={pizza} key={pizza.name} />
           ))}
         </ul>
-      ) : <p>We're still working on our menu. Please come back later</p>}
+      ) : (
+        <p>We're still working on our menu. Please come back later</p>
+      )}
     </main>
   );
 }

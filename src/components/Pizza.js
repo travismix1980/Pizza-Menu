@@ -1,4 +1,4 @@
-import "./index.css";
+import "../index.css";
 
 function Pizza({ pizzaObj }) {
   if (pizzaObj.soldOut) return null;
